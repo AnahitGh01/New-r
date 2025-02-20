@@ -22,7 +22,7 @@ jobs:
         
     - name: run GCC
       run: 
-        gcc HelloWorld.cpp
+        g++ HelloWorld.cpp
     - name: run a.out
       run:
         ./a.out
