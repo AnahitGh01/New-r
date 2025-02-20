@@ -13,10 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up GCC
-      uses: egor- tensin/setup-gcc@v1
-      with: 
-        version: latest
-        platform: x64
+      id: install_cc
+      uses: rlalik/setup-cpp-compiler@master
+      with:
+        compiler: latest
+      
+      
+        
     - name: run GCC
       run: 
         gcc HelloWorld.cpp
