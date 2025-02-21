@@ -26,4 +26,9 @@ jobs:
     - name: run a.out
       run:
         ./a.out
+        
+    - uses: actions/upload-artifact@v4
+      with:
+        name: artifact
+        path: a.out
              
