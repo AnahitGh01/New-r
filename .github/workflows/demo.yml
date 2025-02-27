@@ -31,4 +31,11 @@ jobs:
       with:
         name: artifact
         path: a.out
+    
+    - name: Upload Release Asset
+      uses: softprops/action-gh-release@v1
+      with:
+        files: release/my-artifact.zip
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
              
