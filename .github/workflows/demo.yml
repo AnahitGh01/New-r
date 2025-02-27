@@ -34,12 +34,16 @@ jobs:
         name: artifact
         path: a.out
  
-    - name: Create Tag
+    - name: Configure git to use GitHub Actions token
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git tag -a "v${{ github.run_number }}" -m "Release v${{ github.run_number }}"
-        git push origin "v${{ github.run_number }}"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+    - name: Create a new tag and push it
+      run: |
+          git tag -a "v12" -m "Release v12"
+          git push origin "v12"
         
     - name: Upload Release Asset
       uses: softprops/action-gh-release@v1
