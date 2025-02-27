@@ -19,9 +19,7 @@ jobs:
       uses: rlalik/setup-cpp-compiler@master
       with:
         compiler: latest
-      
-      
-        
+    
     - name: run GCC
       run: 
         g++ HelloWorld.cpp
@@ -40,15 +38,16 @@ jobs:
           git config --local user.name "GitHub Action"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
-    - name: Create a new tag and push it
-      run: |
-          git tag -a "v12" -m "Release v12"
-          git push origin "v12"
-        
-    - name: Upload Release Asset
+    - name: 'Get Previous tag'
+      id: previous_tag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      with:
+        fallback: 1.0.0
+      
+    - name: Release        
       uses: softprops/action-gh-release@v1
       with:
-        files: release/my-artifact.zip
-      env:
+          tag_name: ${{steps.previous_tag.outputs.tag}}
+          files: ${{steps.sign_app.outputs.signedReleaseFile}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
              
