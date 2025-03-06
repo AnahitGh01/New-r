@@ -5,6 +5,8 @@ on:
       - 'v*'
 permissions:
         contents: write
+env: 
+    FILE_NAME: HelloWorld.cpp
 jobs:
   build:
 
@@ -19,10 +21,8 @@ jobs:
         compiler: latest
     
     - name: run GCC
-      env: 
-          DATABASE_URL: MyURL
       run: 
-        g++ HelloWorld.cpp
+        g++ $FILE_NAME
     - name: run a.out
       run:
         ./a.out
