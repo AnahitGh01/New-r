@@ -1,5 +1,3 @@
-name: C/C++ CI
-
 on:
   push:
     branches: [ "main" ]
@@ -21,6 +19,8 @@ jobs:
         compiler: latest
     
     - name: run GCC
+      env: 
+          DATABASE_URL: MyURL
       run: 
         g++ HelloWorld.cpp
     - name: run a.out
@@ -44,10 +44,11 @@ jobs:
       with:
         fallback: 1.0.0
       
-    - name: Release        
+    - name: Release  
+    
       uses: softprops/action-gh-release@v1
       with:
           tag_name: ${{steps.previous_tag.outputs.tag}}
           files: ${{steps.sign_app.outputs.signedReleaseFile}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-             
+      
