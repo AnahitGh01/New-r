@@ -3,10 +3,13 @@ on:
    
 permissions:
         contents: write
-env: 
-    FILE_NAME: HelloWorld.cpp
+
+   
 jobs:
   build:
+    strategy:
+      matrix:
+        FileName: [Hello.cpp, HelloArmenia.cpp, HelloWorld.cpp]
 
     runs-on: ubuntu-latest
 
@@ -20,7 +23,7 @@ jobs:
     
     - name: run GCC
       run: 
-        g++ $FILE_NAME
+        g++ ${{matrix.FileName}}
     - name: run a.out
       run:
         ./a.out
