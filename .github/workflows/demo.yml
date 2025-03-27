@@ -1,5 +1,5 @@
-on:
-  workflow_dispatch:
+on: push
+ 
    
 permissions:
         contents: write
@@ -24,6 +24,9 @@ jobs:
     - name: run GCC
       run: 
         g++ ${{matrix.FileName}}
+    - name: sleep
+      run:
+         sleep 60
     - name: run a.out
       run:
         ./a.out
