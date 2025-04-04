@@ -1,7 +1,8 @@
-on: push
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+on:
+  workflow_run:
+    workflows: ["demo.yml"]
+    types:
+      - completed
    
 permissions:
         contents: write
