@@ -1,6 +1,6 @@
 on:
   workflow_run:
-    workflows: ["demo.yml"]
+    workflows: ["Release"]
     types:
       - completed
    
