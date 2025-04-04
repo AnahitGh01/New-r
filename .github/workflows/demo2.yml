@@ -24,4 +24,4 @@ jobs:
         compiler: latest
     
     - name: run GCC
-      run: 
+      run: g++ ${{matrix.FileName}}
