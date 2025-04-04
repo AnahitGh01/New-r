@@ -4,8 +4,7 @@
 
 int main() {
     std::cout << "Hello World!3554";
-    std::cout << "Armen12"
-        1;
+    std::cout << "Armen12";
     return 0;
 }
 
