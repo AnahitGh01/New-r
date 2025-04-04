@@ -1,6 +1,6 @@
 on:
   workflow_run:
-    workflows: ["Release v"]
+    workflows: ["Build"]
     types:
       - completed
    
