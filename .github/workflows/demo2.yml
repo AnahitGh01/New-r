@@ -1,1 +1,27 @@
+on: push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+   
+permissions:
+        contents: write
 
+   
+jobs:
+  build:
+    strategy:
+      matrix:
+        FileName: [Hello.cpp, HelloArmenia.cpp, HelloWorld.cpp]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up GCC
+      id: install_cc
+      uses: rlalik/setup-cpp-compiler@master
+      with:
+        compiler: latest
+    
+    - name: run GCC
+      run: 
