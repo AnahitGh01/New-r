@@ -4,12 +4,10 @@ on:
 
     inputs:
       FileName:
-        type: choice
+        type: string
         description: For c++ file
-        options: 
-        - Hello.cpp
-        - HelloArmenia.cpp
-        - HelloWorld.cpp
+        
+
      
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
