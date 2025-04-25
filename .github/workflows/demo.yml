@@ -1,5 +1,16 @@
-name: Build
-on: push
+name: FileName
+on: 
+  workflow_dispatch:
+
+    inputs:
+      FileName:
+        type: choice
+        description: For c++ file
+        options: 
+        - Hello.cpp
+        - HelloArmenia.cpp
+        - HelloWorld.cpp
+     
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -7,13 +18,11 @@ concurrency:
 permissions:
         contents: write
 
+
    
 jobs:
   build:
-    strategy:
-      matrix:
-        FileName: [Hello.cpp, HelloArmenia.cpp, HelloWorld.cpp]
-
+ 
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +35,7 @@ jobs:
     
     - name: run GCC
       run: 
-        g++ ${{matrix.FileName}}
+        g++ ${{inputs.FileName}}
     - name: sleep
       run:
          sleep 60
